@@ -7,5 +7,6 @@ pkgs.mkShellNoCC {
   packages = with pkgs; [
     git
     nodejs_21
+    mongosh
   ];
 }
