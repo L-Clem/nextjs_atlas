@@ -6,13 +6,15 @@ export default async function handler(req, res) {
     const body = req.body;
     const db = client.db("sample_mflix");
     const idComment = req.query.idComment;
+    console.log(idComment)
 
     switch (req.method) {
         case "GET":
             try {
+                
                 let dbComment = await db
                     .collection("comments")
-                    .findOne({ _id: ObjectId(idComment) });
+                    .findOne({ _id: new ObjectId(idComment) });
                 res.json({ status: 200, data: dbComment });
             } catch (e) {
                 console.log(e);
