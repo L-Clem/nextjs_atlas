@@ -25,10 +25,17 @@ Run Next
 ## Roadmap
 
 - [x]  `/movies` - (*GET*) Récupérer tous les films
-- [ ]  `/movie/:idMovie` - (*GET-POST-PUT-DELETE*) Récupérer/Ajouter/Modifier/Supprimer un film via son ID
-- [ ]  `/movie/:idMovie/comments` - *GET*) Récupérer la liste de tous les commentaires liés à un film
-- [ ]  `/movie/:idMovie/comment/:idComment` - (*GET-POST-PUT-DELETE*) Récupérer/Ajouter/Modifier/Supprimer un commentaire d'un
-  film
+- [x]  `/movie/:idMovie` - (*GET-POST-PUT-DELETE*) Récupérer/Ajouter/Modifier/Supprimer un film via son ID
+  - [x]  GET 
+  - [x]  POST 
+  - [x]  PUT 
+  - [x]  DELETE 
+- [x]  `/movie/:idMovie/comments` - (*GET*) Récupérer la liste de tous les commentaires liés à un film
+- [x]  `/movie/:idMovie/comment/:idComment` - (*GET-POST-PUT-DELETE*) Récupérer/Ajouter/Modifier/Supprimer un commentaire d'un film
+  - [x]  GET
+  - [x]  POST
+  - [x]  PUT
+  - [x]  DELETE
 
 
 
