@@ -4,6 +4,12 @@
 Projet d'API sommaire *Next.JS*.
 
 
+## Stack
+
+- MongoDB Atlas,
+- Next.js
+- NodeJS
+- Swagger UI
 ## Run Locally
 
 Clone the project
@@ -41,6 +47,10 @@ nix-shell
 To run this project, you will need to add the following environment variables to your .env file. Look at the `.env.exemple` if needed.
 
 `MONGODB_URI`
+
+
+## Documentation
+
 
 ## API Reference
 
