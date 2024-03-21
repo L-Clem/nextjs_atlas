@@ -8,5 +8,6 @@ pkgs.mkShellNoCC {
     git
     nodejs_21
     mongosh
+    tmux
   ];
 }
