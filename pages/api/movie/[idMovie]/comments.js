@@ -21,7 +21,8 @@ export default async function handler(req, res) {
       try {
         let dbComments = await db
           .collection("comments")
-          .find({ movie_id: new ObjectId(idMovie) });
+          .find({ "movie_id": ObjectId(idMovie) })
+          .toArray();
         res.json({ status: 200, data: dbComments });
       } catch (e) {
         console.log(e);

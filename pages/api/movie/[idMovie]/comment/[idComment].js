@@ -11,7 +11,7 @@ export default async function handler(req, res) {
     switch (req.method) {
         case "GET":
             try {
-                
+
                 let dbComment = await db
                     .collection("comments")
                     .findOne({ _id: new ObjectId(idComment) });
@@ -25,9 +25,9 @@ export default async function handler(req, res) {
         case "PUT":
             let replacement = body;
             delete replacement._id;
-
+            
             try {
-                db.collection("movies").findOneAndReplace(
+                db.collection("comments").findOneAndReplace(
                     { _id: new ObjectId(idComment) },
                     replacement
                 );
@@ -42,7 +42,7 @@ export default async function handler(req, res) {
         case "DELETE":
             try {
                 let dbComment = await db
-                    .collection("movies")
+                    .collection("comments")
                     .findOneAndDelete({ _id: ObjectId(idComment) });
                 res.json({ status: 200 });
             } catch (e) {
