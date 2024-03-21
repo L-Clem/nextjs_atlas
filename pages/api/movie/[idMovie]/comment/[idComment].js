@@ -1,6 +1,76 @@
 import clientPromise from "../../../../../lib/mongodb";
 import { ObjectId } from "mongodb";
 
+/**
+* @swagger
+* /api/movie/{idMovie}/comment/{idComment}:
+*   get:
+*     tags:
+*       - comment
+*     summary: Obtain movie's comment details
+*     parameters:
+*       - in: path
+*         name: idMovie
+*         required: true
+*         description: ObjectID of the movie to retrieve a comment from.
+*         schema:
+*           type: string
+*       - in: path
+*         name: idComment
+*         required: true
+*         description: ObjectID of the movie's comment to retrieve.
+*         schema:
+*           type: string
+*     responses:
+*       200:
+*         description: Your movie's comment has been inserted.
+*   put:
+*     tags:
+*       - comment
+*     summary: Update movie comment details
+*     parameters:
+*       - in: path
+*         name: idMovie
+*         required: true
+*         description: ObjectID of the movie to retrieve a comment from.
+*         schema:
+*           type: string
+*       - in: path
+*         name: idComment
+*         required: true
+*         description: ObjectID of the movie's comment to retrieve.
+*         schema:
+*           type: string
+*     requestBody:
+*       required: true
+*       content:
+*         application/json:
+*           schema:
+*             type: string
+*     responses:
+*       200:
+*         description: Your movie's comment has been inserted.
+*   delete:
+*     tags:
+*       - comment
+*     summary: Delete movie comment
+*     parameters:
+*       - in: path
+*         name: idMovie
+*         required: true
+*         description: ObjectID of the movie to retrieve a comment from.
+*         schema:
+*           type: string
+*       - in: path
+*         name: idComment
+*         required: true
+*         description: ObjectID of the movie's comment to retrieve.
+*         schema:
+*           type: string
+*     responses:
+*       200:
+*         description: Your movie's comment has been inserted.
+*/
 export default async function handler(req, res) {
     const client = await clientPromise;
     const body = req.body;

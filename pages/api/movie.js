@@ -1,5 +1,23 @@
 import clientPromise from "../../lib/mongodb";
 
+
+/**
+* @swagger
+* /api/movie:
+*   post:
+*     tags:
+*       - movie
+*     summary: Insert a new movie
+*     requestBody:
+*       required: true
+*       content:
+*         application/json:
+*           schema:
+*             type: string
+*     responses:
+*       200:
+*         description: Your movie has been inserted.
+*/
 export default async function handler(req, res) {
     const client = await clientPromise;
     const body = req.body;
@@ -8,6 +26,7 @@ export default async function handler(req, res) {
     switch (req.method) {
         case "POST":
             let document = body;
+            delete document._id;
 
             try {
                 let dbMovie = await db.collection("movies").insertOne(document);

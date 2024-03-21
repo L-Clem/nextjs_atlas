@@ -2,14 +2,23 @@ import clientPromise from "../../../../lib/mongodb";
 import { ObjectId } from "mongodb";
 
 /**
- * @swagger
- * /api/movie/[id]/comments:
- *   get:
- *     description: Returns all movies
- *     responses:
- *       200:
- *         description: You got your movies list
- */
+* @swagger
+* /api/movie/{idMovie}/comments:
+*   get:
+*     tags:
+*       - comments
+*     summary: Returns all movie comments.
+*     parameters:
+*       - in: path
+*         name: idMovie
+*         required: true
+*         description: ObjectID of the movie to retrieve comments from.
+*         schema:
+*           type: string
+*     responses:
+*       200:
+*         description: All your movies list.
+*/
 export default async function handler(req, res) {
   const client = await clientPromise;
   const db = client.db("sample_mflix");
