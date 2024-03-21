@@ -1,4 +1,5 @@
 import clientPromise from "../../../../lib/mongodb";
+import { verifyMovie } from "../../../../lib/mongodb";
 import { ObjectId } from "mongodb";
 
 /**
@@ -23,11 +24,14 @@ export default async function handler(req, res) {
   const client = await clientPromise;
   const db = client.db("sample_mflix");
   const idMovie = req.query.idMovie;
-  console.log(idMovie)
 
   switch (req.method) {
     case "GET":
       try {
+        let result = await verifyMovie(idMovie)
+        if (result.found == false) {
+          throw new Error("MovieNotFound")
+        }
         let dbComments = await db
           .collection("comments")
           .find({ "movie_id": ObjectId(idMovie) })

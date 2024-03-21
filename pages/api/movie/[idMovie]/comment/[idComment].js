@@ -1,4 +1,5 @@
 import clientPromise from "../../../../../lib/mongodb";
+import { verifyMovie } from "../../../../../lib/mongodb";
 import { ObjectId } from "mongodb";
 
 /**
@@ -75,13 +76,16 @@ export default async function handler(req, res) {
     const client = await clientPromise;
     const body = req.body;
     const db = client.db("sample_mflix");
+    const idMovie = req.query.idMovie;
     const idComment = req.query.idComment;
-    console.log(idComment)
 
     switch (req.method) {
         case "GET":
             try {
-
+                let result = await verifyMovie(idMovie)
+                if (result.found == false) {
+                    throw new Error("MovieNotFound")
+                }
                 let dbComment = await db
                     .collection("comments")
                     .findOne({ _id: new ObjectId(idComment) });
@@ -95,8 +99,12 @@ export default async function handler(req, res) {
         case "PUT":
             let replacement = body;
             delete replacement._id;
-            
+
             try {
+                let result = await verifyMovie(idMovie)
+                if (result.found == false) {
+                    throw new Error("MovieNotFound")
+                }
                 db.collection("comments").findOneAndReplace(
                     { _id: new ObjectId(idComment) },
                     replacement
@@ -111,7 +119,11 @@ export default async function handler(req, res) {
 
         case "DELETE":
             try {
-                let dbComment = await db
+                let result = await verifyMovie(idMovie)
+                if (result.found == false) {
+                    throw new Error("MovieNotFound")
+                }
+                await db
                     .collection("comments")
                     .findOneAndDelete({ _id: ObjectId(idComment) });
                 res.json({ status: 200 });

@@ -1,4 +1,5 @@
 import clientPromise from "../../../lib/mongodb";
+import { verifyMovie } from "../../../lib/mongodb";
 import { ObjectId } from "mongodb";
 
 /**

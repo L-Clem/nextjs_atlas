@@ -1,4 +1,5 @@
 import clientPromise from "../../../../lib/mongodb";
+import { verifyMovie } from "../../../../lib/mongodb";
 
 /**
 * @swagger
@@ -35,6 +36,10 @@ export default async function handler(req, res) {
             delete document._id;
 
             try {
+                let result = await verifyMovie(idMovie)
+                if (result.found == false) {
+                    throw new Error("MovieNotFound")
+                }
                 let dbComment = await db.collection("comments").insertOne(document);
                 res.json({ status: 200, data: dbComment });
             } catch (e) {

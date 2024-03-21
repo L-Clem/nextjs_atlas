@@ -1,4 +1,6 @@
-import { MongoClient } from "mongodb";
+import { ObjectIdLike } from "bson";
+import { MongoClient, ObjectId } from "mongodb";
+
 
 if (!process.env.MONGODB_URI) {
   throw new Error('Invalid/Missing environment variable: "MONGODB_URI"');
@@ -26,6 +28,26 @@ if (process.env.NODE_ENV === "development") {
   // In production mode, it's best to not use a global variable.
   client = new MongoClient(uri, options);
   clientPromise = client.connect();
+}
+
+
+export async function verifyMovie(idMovie: string | ObjectId) {
+  const client = await clientPromise;
+  const db = client.db("sample_mflix");
+  console.log(idMovie)
+  try {
+    let dbComments = await db
+      .collection("movies")
+      .findOne({ "_id": new ObjectId(idMovie) })
+    if (dbComments == undefined) {
+      return { found: false }
+    } else {
+      return { found: true }
+    }
+  } catch (e) {
+    console.log(e);
+    return { found: false }
+  }
 }
 
 // Export a module-scoped MongoClient promise. By doing this in a
