@@ -59,6 +59,10 @@ Run the projet and go to the `/swagger` route on `http://localhost:3000``.
 
 ## Roadmap
 
+- [ ] Ajouter un soft-delete (find+insert & check if deleted).
+- [ ] Ajouter une contrainte base sur l'existance d'un film pour le add comment.
+  - [ ] Ajouter un cascade delete.
+
 - [x]  `/movies` - (*GET*) Récupérer tous les films
 - [x]  `/movie/:idMovie` - (*GET-POST-PUT-DELETE*) Récupérer/Ajouter/Modifier/Supprimer un film via son ID
   - [x]  GET 
